@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CuxxyzHost | Elite Cyber Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.cdnfonts.com/css/cyberpunk-is-not-dead" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/neuropol" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/blanka" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600;700&family=Krona+One&family=Rajdhani:wght@300;400;500;600;700&family=Titillium+Web:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-neon: #00f9ff;
+            --accent-neon: #ff4dff;
+            --elite-gold: #ffd700;
+            --elite-silver: #f0f0f0;
+            --deep-space: #0a0a14;
+            --void-black: #050508;
+            --carbon-fiber: #1a1a1a;
+            --cyber-blue: #0077ff;
+            --matrix-green: #00ff88;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Jura', 'Titillium Web', sans-serif;
+            background-color: var(--deep-space);
+            color: var(--elite-silver);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(0, 249, 255, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(255, 77, 255, 0.05) 0%, transparent 40%),
+                linear-gradient(135deg, var(--void-black) 0%, var(--deep-space) 100%);
+            letter-spacing: 0.5px;
+        }
+
+        /* Elite Grid Background */
+        .elite-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 249, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 249, 255, 0.02) 1px, transparent 1px);
+            background-size: 80px 80px;
+            z-index: -3;
+            opacity: 0.4;
+        }
+
+        /* Laser Lines */
+        .laser-lines {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        .laser-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary-neon), transparent);
+            box-shadow: 0 0 8px var(--primary-neon);
+            animation: laserScan 4s linear infinite;
+        }
+
+        @keyframes laserScan {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100vw); }
+        }
+
+        /* Header - Elite */
+        .header-elite {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 60px;
+            position: relative;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+            background: rgba(10, 10, 20, 0.4);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .logo-elite {
+            font-family: 'Neuropol', 'Blanka', sans-serif;
+            font-weight: 400;
+            font-size: 2.8rem;
+            color: transparent;
+            background: linear-gradient(90deg, var(--primary-neon), var(--elite-gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            position: relative;
+            padding-bottom: 8px;
+        }
+
+        .logo-elite::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-neon), transparent);
+            animation: logoGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes logoGlow {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        /* Menu Button Elite */
+        .menu-btn-elite {
+            width: 50px;
+            height: 50px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .menu-btn-elite:hover {
+            border-color: var(--primary-neon);
+            box-shadow: 0 0 20px rgba(0, 249, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .menu-btn-elite span {
+            width: 22px;
+            height: 2px;
+            background: var(--elite-silver);
+            margin: 2px 0;
+            transition: all 0.3s;
+        }
+
+        /* Contact Modal */
+        .contact-modal {
+            position: absolute;
+            top: 100%;
+            right: 60px;
+            background: rgba(15, 15, 25, 0.95);
+            backdrop-filter: blur(30px);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 25px;
+            display: none;
+            min-width: 220px;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-top: 2px solid var(--primary-neon);
+        }
+
+        .contact-modal.active {
+            display: block;
+            animation: modalAppear 0.3s ease-out;
+        }
+
+        @keyframes modalAppear {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .contact-title {
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: var(--primary-neon);
+            margin-bottom: 20px;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        .contact-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .contact-icons a {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            color: var(--elite-silver);
+            font-size: 1.3rem;
+            transition: all 0.3s;
+        }
+
+        .contact-icons a:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary-neon);
+            box-shadow: 0 5px 15px rgba(0, 249, 255, 0.2);
+        }
+
+        /* Main Content */
+        .main-content-elite {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .main-title-elite {
+            font-family: 'Neuropol', 'Blanka', sans-serif;
+            font-weight: 400;
+            font-size: 4rem;
+            color: transparent;
+            background: linear-gradient(90deg, var(--elite-gold), var(--primary-neon));
+            -webkit-background-clip: text;
+            background-clip: text;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-bottom: 50px;
+            text-align: center;
+            position: relative;
+            padding: 20px 40px;
+        }
+
+        .main-title-elite::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(0, 249, 255, 0.05), transparent);
+            border-radius: 10px;
+            z-index: -1;
+        }
+
+        /* Elite Button */
+        .elite-btn {
+            font-family: 'Jura', sans-serif;
+            font-weight: 500;
+            font-size: 1.4rem;
+            color: var(--elite-silver);
+            background: transparent;
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            padding: 18px 45px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            backdrop-filter: blur(10px);
+        }
+
+        .elite-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 249, 255, 0.1), transparent);
+            transition: left 0.7s;
+        }
+
+        .elite-btn:hover {
+            border-color: var(--primary-neon);
+            color: var(--primary-neon);
+            box-shadow: 
+                0 0 30px rgba(0, 249, 255, 0.2),
+                inset 0 0 20px rgba(0, 249, 255, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .elite-btn:hover::before {
+            left: 100%;
+        }
+
+        /* Footer */
+        .footer-elite {
+            text-align: center;
+            padding: 25px;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 300;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.3);
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(5, 5, 8, 0.9), transparent);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .header-elite {
+                padding: 20px 40px;
+            }
+            
+            .logo-elite {
+                font-size: 2.2rem;
+            }
+            
+            .main-title-elite {
+                font-size: 3rem;
+                letter-spacing: 4px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-elite {
+                padding: 15px 30px;
+            }
+            
+            .logo-elite {
+                font-size: 1.8rem;
+            }
+            
+            .main-title-elite {
+                font-size: 2.2rem;
+                letter-spacing: 3px;
+                padding: 15px 25px;
+            }
+            
+            .elite-btn {
+                font-size: 1.2rem;
+                padding: 15px 35px;
+            }
+            
+            .contact-modal {
+                right: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-elite {
+                padding: 12px 20px;
+            }
+            
+            .logo-elite {
+                font-size: 1.4rem;
+                letter-spacing: 2px;
+            }
+            
+            .main-title-elite {
+                font-size: 1.8rem;
+                letter-spacing: 2px;
+                padding: 12px 20px;
+            }
+            
+            .elite-btn {
+                font-size: 1rem;
+                padding: 12px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="elite-grid"></div>
+    <div class="laser-lines" id="laserLines"></div>
+    
+    <header class="header-elite">
+        <div class="logo-elite">CuxxyzHost</div>
+        
+        <div class="menu-btn-elite" id="menuBtn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        
+        <div class="contact-modal" id="contactModal">
+            <div class="contact-title">Contact Admin</div>
+            <div class="contact-icons">
+                <a href="https://wa.me/6283128490718" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://t.me/" target="_blank">
+                    <i class="fab fa-telegram"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <main class="main-content-elite">
+        <h1 class="main-title-elite">List-By-CuxxyzHost</h1>
+        <button class="elite-btn" id="jastebBtn">Jasteb</button>
+    </main>
+    
+    <footer class="footer-elite">
+        <div>© 2023 CuxxyzHost | Elite Cyber Network Services</div>
+    </footer>
+
+    <script>
+        // Create laser scan lines
+        function createLaserLines() {
+            const laserContainer = document.getElementById('laserLines');
+            
+            for (let i = 0; i < 3; i++) {
+                const line = document.createElement('div');
+                line.classList.add('laser-line');
+                
+                // Random position
+                line.style.top = Math.random() * 100 + 'vh';
+                line.style.width = Math.random() * 300 + 200 + 'px';
+                
+                // Random delay
+                line.style.animationDelay = Math.random() * 4 + 's';
+                
+                laserContainer.appendChild(line);
+            }
+        }
+        
+        // Menu functionality
+        const menuBtn = document.getElementById('menuBtn');
+        const contactModal = document.getElementById('contactModal');
+        
+        menuBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            contactModal.classList.toggle('active');
+        });
+        
+        // Close modal when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!contactModal.contains(e.target) && !menuBtn.contains(e.target)) {
+                contactModal.classList.remove('active');
+            }
+        });
+        
+        // Navigation to Jasteb page
+        document.getElementById('jastebBtn').addEventListener('click', function() {
+            // Smooth transition effect
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.3s';
+            
+            setTimeout(() => {
+                window.location.href = 'jasteb.html';
+            }, 300);
+        });
+        
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', function() {
+            createLaserLines();
+        });
+    </script>
+</body>
+</html>
