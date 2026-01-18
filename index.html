@@ -1,0 +1,173 @@
+<!DOCTYPE html><html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CuxxyzHost | Ultra Premium Futuristic</title><link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet"><style>
+:root{
+  --neon1:#00eaff;
+  --neon2:#a855f7;
+  --neon3:#22c55e;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:'Share Tech Mono',monospace;
+  background:radial-gradient(circle at top,#0b1225,#02030a 70%);
+  color:#fff;
+  overflow-x:hidden;
+}
+
+/* MOVING BACKGROUND ELEMENTS */
+.bg-orb{
+  position:fixed;
+  width:320px;
+  height:320px;
+  border-radius:50%;
+  background:radial-gradient(circle,var(--neon2),transparent 70%);
+  filter:blur(120px);
+  animation:orbMove 18s linear infinite alternate;
+  z-index:-2;
+}
+.bg-orb.two{background:radial-gradient(circle,var(--neon1),transparent 70%);animation-duration:22s;}
+
+@keyframes orbMove{
+  from{transform:translate(-100px,-100px)}
+  to{transform:translate(300px,300px)}
+}
+
+/* GRID */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  background-image:linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px);
+  background-size:60px 60px;
+  pointer-events:none;
+}
+
+/* HEADER */
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:22px 40px;
+}
+
+.logo{
+  font-family:'Orbitron',sans-serif;
+  font-size:22px;
+  font-weight:900;
+  color:var(--neon1);
+  border-right:3px solid var(--neon1);
+  white-space:nowrap;
+  overflow:hidden;
+  width:0;
+  animation:typingLogo 3s steps(12) forwards,blink 0.7s infinite,glowPulse 3s infinite;
+}
+
+@keyframes typingLogo{to{width:175px}}
+@keyframes blink{50%{border-color:transparent}}
+@keyframes glowPulse{
+  0%,100%{text-shadow:0 0 10px var(--neon1)}
+  50%{text-shadow:0 0 25px var(--neon2)}
+}
+
+/* MENU */
+.menu-btn{width:36px;cursor:pointer;z-index:999}
+.menu-btn span{display:block;height:3px;margin:7px 0;background:#fff}
+
+.menu{
+  position:fixed;
+  top:90px;
+  right:40px;
+  background:rgba(5,10,25,0.98);
+  border:1px solid var(--neon1);
+  border-radius:16px;
+  padding:18px 22px;
+  display:none;
+  z-index:9999;
+  box-shadow:0 0 40px rgba(0,234,255,.4);
+}
+
+.menu .item{
+  margin:12px 0;
+  cursor:pointer;
+}
+
+/* HERO */
+.hero{text-align:center;padding:90px 20px 40px}
+.hero h1{
+  font-family:'Orbitron',sans-serif;
+  font-size:24px;
+  margin-bottom:10px;
+  animation:float 4s ease-in-out infinite;
+}
+
+@keyframes float{50%{transform:translateY(-12px)}}
+
+.typing-center{
+  border-right:3px solid var(--neon1);
+  white-space:nowrap;
+  overflow:hidden;
+}
+
+.subtitle{font-size:12px;opacity:.75;margin-bottom:50px}
+
+/* BUTTONS */
+.buttons{display:flex;justify-content:center;gap:28px;flex-wrap:wrap}
+
+.btn{
+  position:relative;
+  padding:18px 52px;
+  font-family:'Orbitron',sans-serif;
+  text-decoration:none;
+  color:#fff;
+  border-radius:18px;
+  background:#020617;
+  overflow:hidden;
+}
+
+/* RPG BORDER RUNNING */
+.btn::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:18px;
+  padding:2px;
+  background:linear-gradient(90deg,var(--neon1),var(--neon2),var(--neon3),var(--neon1));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  animation:borderRun 3s linear infinite;
+}
+
+@keyframes borderRun{to{background-position:400%}}
+
+.btn:hover{box-shadow:0 0 55px rgba(0,234,255,.7);transform:scale(1.08)}
+
+@media(max-width:768px){header{padding:20px}.hero h1{font-size:20px}}
+</style></head>
+<body><div class="bg-orb"></div>
+<div class="bg-orb two"></div><header>
+  <div class="logo">CuxxyzHost</div>
+  <div class="menu-btn" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</header><div class="menu" id="menu">
+  <div class="item" onclick="window.open('https://wa.me/6283128490718')">WhatsApp Admin</div>
+  <div class="item" onclick="window.open('https://t.me/cuxxyzhost')">Telegram Admin</div>
+  <div class="item" onclick="window.open('https://whatsapp.com/channel/0029VbBroNiCMY09CSdh8Q0n')">Saluran WhatsApp</div>
+  <div class="item" onclick="window.open('https://t.me/testibycuxxyz')">Saluran Telegram</div>
+</div><section class="hero">
+  <h1><span class="typing-center" id="typing"></span></h1>
+  <div class="subtitle">Ultra Premium Futuristic Digital Service</div>  <div class="buttons">
+    <a class="btn">Jasteb</a>
+    <a class="btn">Reseller Jasteb</a>
+  </div>
+</section><script>
+const text='List Produk CuxxyzHost';let i=0;
+(function type(){if(i<text.length){typing.innerHTML+=text[i++];setTimeout(type,85)}})();
+function toggleMenu(){menu.style.display=menu.style.display==='block'?'none':'block'}
+</script></body>
+</html>
