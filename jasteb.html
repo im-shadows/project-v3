@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jasteb - CuxxyzHost</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;700&family=Oxanium:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --neon-blue: #0ff0fc;
+            --neon-purple: #bc13fe;
+            --neon-green: #39ff14;
+            --neon-pink: #ff00ff;
+            --dark-bg: #0a0a1a;
+            --darker-bg: #050510;
+            --card-bg: rgba(10, 15, 35, 0.7);
+            --text-glow: 0 0 10px, 0 0 20px, 0 0 30px;
+        }
+
+        body {
+            font-family: 'Oxanium', 'Rajdhani', sans-serif;
+            background-color: var(--dark-bg);
+            color: white;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(188, 19, 254, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(0, 255, 252, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 50% 50%, rgba(57, 255, 20, 0.05) 0%, transparent 50%);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .scanline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0, 255, 252, 0.03) 50%);
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: -1;
+            animation: scanline 8s linear infinite;
+        }
+
+        @keyframes scanline {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 100%; }
+        }
+
+        /* Header */
+        header {
+            padding: 20px 40px;
+            position: relative;
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 2.5rem;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 
+                0 0 10px var(--neon-purple),
+                0 0 20px var(--neon-purple),
+                0 0 30px var(--neon-purple),
+                0 0 40px var(--neon-blue);
+            animation: blink 2s infinite;
+            display: inline-block;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Main Content */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .page-title {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 3.5rem;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin: 30px 0 40px;
+            text-shadow: 
+                0 0 10px var(--neon-green),
+                0 0 20px var(--neon-green),
+                0 0 30px var(--neon-green);
+            position: relative;
+        }
+
+        /* Product Container */
+        .product-container {
+            background-color: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--neon-blue);
+            border-radius: 15px;
+            padding: 30px;
+            width: 90%;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            box-shadow: 
+                0 0 30px rgba(0, 255, 252, 0.3),
+                inset 0 0 30px rgba(0, 255, 252, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-container:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple), var(--neon-green));
+            box-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        .product-title {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 2.2rem;
+            color: var(--neon-blue);
+            text-align: left;
+            margin-bottom: 25px;
+            text-shadow: 0 0 10px var(--neon-blue);
+            display: flex;
+            align-items: center;
+        }
+
+        .product-title:before {
+            content: '$';
+            margin-right: 10px;
+            color: var(--neon-green);
+            font-size: 2.5rem;
+        }
+
+        .product-option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(0, 255, 252, 0.2);
+            transition: all 0.3s;
+        }
+
+        .product-option:hover {
+            background-color: rgba(0, 255, 252, 0.05);
+            padding-left: 10px;
+            padding-right: 10px;
+            border-radius: 5px;
+        }
+
+        .product-option:last-child {
+            border-bottom: none;
+        }
+
+        .option-name {
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600;
+            font-size: 1.5rem;
+            color: white;
+            text-align: left;
+            flex: 1;
+        }
+
+        .growdown {
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 400;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            flex: 1;
+            font-style: italic;
+        }
+
+        .option-price {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--neon-green);
+            text-align: right;
+            flex: 1;
+            text-shadow: 0 0 10px var(--neon-green);
+        }
+
+        .price-label {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-right: 5px;
+        }
+
+        /* Button Styling */
+        .order-button {
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: white;
+            background: linear-gradient(to right, rgba(0, 255, 252, 0.2), rgba(188, 19, 254, 0.2));
+            border: 2px solid var(--neon-purple);
+            border-radius: 10px;
+            padding: 15px 40px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 30px;
+            box-shadow: 
+                inset 0 0 15px rgba(188, 19, 254, 0.3),
+                0 0 20px rgba(188, 19, 254, 0.5);
+        }
+
+        .order-button:hover {
+            background: linear-gradient(to right, rgba(0, 255, 252, 0.3), rgba(188, 19, 254, 0.3));
+            box-shadow: 
+                inset 0 0 25px rgba(188, 19, 254, 0.5),
+                0 0 30px var(--neon-purple),
+                0 0 40px var(--neon-purple);
+            transform: translateY(-3px);
+        }
+
+        .back-button {
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(10, 15, 35, 0.7);
+            border: 1px solid rgba(0, 255, 252, 0.5);
+            border-radius: 8px;
+            padding: 10px 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        .back-button:hover {
+            color: white;
+            background-color: rgba(0, 255, 252, 0.1);
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 15px rgba(0, 255, 252, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            width: 100%;
+            background: linear-gradient(to top, rgba(5, 5, 16, 0.9), transparent);
+            margin-top: 40px;
+        }
+
+        .credit {
+            margin-top: 5px;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+            
+            .logo {
+                font-size: 1.8rem;
+            }
+            
+            .page-title {
+                font-size: 2.5rem;
+            }
+            
+            .product-container {
+                padding: 20px;
+                width: 95%;
+            }
+            
+            .product-title {
+                font-size: 1.8rem;
+            }
+            
+            .option-name {
+                font-size: 1.2rem;
+            }
+            
+            .option-price {
+                font-size: 1.5rem;
+            }
+            
+            .order-button {
+                font-size: 1.3rem;
+                padding: 12px 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .product-title {
+                font-size: 1.5rem;
+            }
+            
+            .product-option {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 20px 0;
+            }
+            
+            .option-name, .growdown, .option-price {
+                width: 100%;
+                text-align: left;
+                margin-bottom: 5px;
+            }
+            
+            .growdown {
+                margin-left: 20px;
+                font-size: 1rem;
+            }
+            
+            .option-price {
+                text-align: left;
+                margin-top: 5px;
+            }
+            
+            .order-button {
+                font-size: 1.1rem;
+                padding: 10px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="noise-overlay"></div>
+    <div class="scanline"></div>
+    
+    <header>
+        <div class="logo">CuxxyzHost</div>
+    </header>
+    
+    <main class="main-content">
+        <h1 class="page-title">List-Jasteb</h1>
+        
+        <div class="product-container">
+            <div class="product-title">Jasteb</div>
+            <div class="growdown">Pilihan:</div>
+            
+            <!-- Product Options -->
+            <div class="product-option">
+                <div class="option-name">"40+ Result"</div>
+                <div class="option-price"><span class="price-label">Harga:</span> Rp 3.000</div>
+            </div>
+            
+            <div class="product-option">
+                <div class="option-name">"55+ Result"</div>
+                <div class="option-price"><span class="price-label">Harga:</span> Rp 4.000</div>
+            </div>
+            
+            <div class="product-option">
+                <div class="option-name">"70+ Result"</div>
+                <div class="option-price"><span class="price-label">Harga:</span> Rp 5.000</div>
+            </div>
+            
+            <div class="product-option">
+                <div class="option-name">"150+ Result"</div>
+                <div class="option-price"><span class="price-label">Harga:</span> Rp 10.000</div>
+            </div>
+            
+            <div class="product-option">
+                <div class="option-name">"200+ Result"</div>
+                <div class="option-price"><span class="price-label">Harga:</span> Rp 15.000</div>
+            </div>
+            
+            <div class="product-option">
+                <div class="option-name">"700+ Result"</div>
+                <div class="option-price"><span class="price-label">Harga:</span> Rp 20.000</div>
+            </div>
+            
+            <button class="order-button" id="orderButton">Order Now</button>
+        </div>
+        
+        <button class="back-button" id="backButton">Back</button>
+    </main>
+    
+    <footer>
+        <div>© 2023 CuxxyzHost - All Rights Reserved</div>
+        <div class="credit">Website created with RPG Neon style</div>
+    </footer>
+
+    <script>
+        // Order button functionality
+        const orderButton = document.getElementById('orderButton');
+        orderButton.addEventListener('click', function() {
+            // Get selected option (for simplicity, we'll use the first one as default)
+            // In a real application, you would let users select an option
+            const selectedOption = document.querySelector('.product-option');
+            const optionName = selectedOption.querySelector('.option-name').textContent;
+            const optionPrice = selectedOption.querySelector('.option-price').textContent.replace('Harga: ', '');
+            
+            // Create WhatsApp message
+            const phoneNumber = '6283128490718';
+            const message = `Hallo,saya mau order!%0Aproduk : jasteb%0Ajumlah : ${optionName}%0Aharga : ${optionPrice}`;
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
+            
+            // Open WhatsApp
+            window.open(whatsappURL, '_blank');
+        });
+        
+        // Back button functionality
+        const backButton = document.getElementById('backButton');
+        backButton.addEventListener('click', function() {
+            window.location.href = 'index.html';
+        });
+        
+        // Make options selectable
+        const productOptions = document.querySelectorAll('.product-option');
+        let selectedOption = null;
+        
+        productOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove selected class from all options
+                productOptions.forEach(opt => {
+                    opt.style.backgroundColor = '';
+                    opt.style.boxShadow = '';
+                });
+                
+                // Add selected class to clicked option
+                this.style.backgroundColor = 'rgba(0, 255, 252, 0.1)';
+                this.style.boxShadow = 'inset 0 0 15px rgba(0, 255, 252, 0.3)';
+                
+                // Store selected option
+                selectedOption = this;
+                
+                // Update order button to use selected option
+                orderButton.addEventListener('click', function() {
+                    if (selectedOption) {
+                        const optionName = selectedOption.querySelector('.option-name').textContent;
+                        const optionPrice = selectedOption.querySelector('.option-price').textContent.replace('Harga: ', '');
+                        
+                        const phoneNumber = '6283128490718';
+                        const message = `Hallo,saya mau order!%0Aproduk : jasteb%0Ajumlah : ${optionName}%0Aharga : ${optionPrice}`;
+                        const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
+                        
+                        window.open(whatsappURL, '_blank');
+                    }
+                });
+            });
+        });
+        
+        // Select first option by default
+        if (productOptions.length > 0) {
+            productOptions[0].click();
+        }
+    </script>
+</body>
+</html>
