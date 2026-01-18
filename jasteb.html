@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jasteb Elite | CuxxyzHost</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.cdnfonts.com/css/cyberverse" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/cyberpunk-is-not-dead" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/astro-space" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/space-grotesk" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Oxanium:wght@300;400;600;800&family=Rajdhani:wght@300;400;600;700&family=Exo+2:wght@200;300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --neon-cyan: #00f9ff;
+            --neon-purple: #b026ff;
+            --neon-pink: #ff00ff;
+            --neon-green: #00ff88;
+            --neon-orange: #ff6b00;
+            --elite-gold: #ffd700;
+            --elite-silver: #f5f5f7;
+            --void-black: #05050a;
+            --deep-space: #0a0a14;
+            --cyber-dark: #121220;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            font-family: 'Space Grotesk', 'Exo 2', sans-serif;
+            background-color: var(--void-black);
+            color: var(--elite-silver);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Background */
+        .animated-bg-jasteb {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -3;
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(176, 38, 255, 0.1) 0%, transparent 30%),
+                radial-gradient(circle at 70% 80%, rgba(0, 255, 136, 0.1) 0%, transparent 30%),
+                linear-gradient(135deg, #05050a 0%, #0a0a14 50%, #121220 100%);
+        }
+
+        /* Binary Rain */
+        .binary-rain {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .binary-digit {
+            position: absolute;
+            font-family: 'Orbitron', monospace;
+            font-size: 1.2rem;
+            color: rgba(0, 249, 255, 0.3);
+            animation: binaryFall linear infinite;
+            text-shadow: 0 0 5px rgba(0, 249, 255, 0.5);
+        }
+
+        @keyframes binaryFall {
+            0% { transform: translateY(-100px); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+
+        /* Hexagon Pattern */
+        .hexagon-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at center, transparent 0%, rgba(5, 5, 10, 0.9) 100%),
+                url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M60,0L104,30V90L60,120L16,90V30Z' fill='none' stroke='%2300f9ff' stroke-width='0.3' stroke-opacity='0.05'/%3E%3C/svg%3E");
+            background-size: 120px 120px;
+            z-index: -1;
+            opacity: 0.4;
+            animation: patternMove 60s linear infinite;
+        }
+
+        @keyframes patternMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 120px 120px; }
+        }
+
+        /* Header */
+        .header-jasteb {
+            padding: 30px 60px;
+            position: relative;
+            z-index: 100;
+        }
+
+        .logo-jasteb {
+            font-family: 'Cyberverse', 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 3.2rem;
+            color: transparent;
+            background: linear-gradient(90deg, 
+                var(--neon-green), 
+                var(--neon-cyan), 
+                var(--neon-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            position: relative;
+            animation: colorShiftJasteb 6s infinite alternate, floatLogo 6s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        @keyframes colorShiftJasteb {
+            0% { background: linear-gradient(90deg, var(--neon-green), var(--neon-cyan)); }
+            50% { background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple)); }
+            100% { background: linear-gradient(90deg, var(--neon-purple), var(--neon-green)); }
+        }
+
+        /* Main Content */
+        .main-content-jasteb {
+            padding: 50px 40px;
+            position: relative;
+            z-index: 50;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .page-title-jasteb {
+            font-family: 'Cyberverse', 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 4rem;
+            color: transparent;
+            background: linear-gradient(90deg, 
+                var(--neon-pink), 
+                var(--neon-orange), 
+                var(--neon-cyan));
+            -webkit-background-clip: text;
+            background-clip: text;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 70px;
+            animation: titlePulse 4s infinite alternate;
+            position: relative;
+        }
+
+        @keyframes titlePulse {
+            0% { 
+                text-shadow: 0 0 30px rgba(255, 0, 255, 0.5),
+                            0 0 60px rgba(255, 0, 255, 0.2);
+            }
+            100% { 
+                text-shadow: 0 0 40px rgba(0, 249, 255, 0.6),
+                            0 0 80px rgba(0, 249, 255, 0.3);
+            }
+        }
+
+        /* Product Container */
+        .product-container-jasteb {
+            background: rgba(18, 18, 32, 0.7);
+            backdrop-filter: blur(25px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 50px;
+            margin-bottom: 50px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .product-container-jasteb::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, 
+                var(--neon-cyan), 
+                var(--neon-purple), 
+                var(--neon-pink));
+            animation: topBorderFlow 3s infinite linear;
+        }
+
+        @keyframes topBorderFlow {
+            0% { background-position: -100% 0; }
+            100% { background-position: 100% 0; }
+        }
+
+        /* Selection Section */
+        .selection-section {
+            margin-bottom: 40px;
+        }
+
+        .section-title-jasteb {
+            font-family: 'Oxanium', sans-serif;
+            font-weight: 600;
+            font-size: 1.6rem;
+            color: var(--neon-cyan);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            letter-spacing: 1.5px;
+        }
+
+        .section-title-jasteb::before {
+            content: '$';
+            font-size: 2.2rem;
+            color: var(--elite-gold);
+            font-family: 'Orbitron', sans-serif;
+            animation: dollarPulse 2s infinite alternate;
+        }
+
+        @keyframes dollarPulse {
+            0% { text-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
+            100% { text-shadow: 0 0 20px rgba(255, 215, 0, 0.8); }
+        }
+
+        /* Selection Box - Improved */
+        .selection-box-jasteb {
+            background: rgba(10, 10, 20, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 20px 25px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            color: var(--elite-silver);
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .selection-box-jasteb:hover {
+            border-color: var(--neon-cyan);
+            background: rgba(0, 249, 255, 0.05);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 249, 255, 0.1);
+        }
+
+        .selection-box-jasteb.active {
+            border-color: var(--neon-green);
+            background: rgba(0, 255, 136, 0.05);
+        }
+
+        .selection-box-jasteb::after {
+            content: '▼';
+            font-size: 1rem;
+            color: var(--neon-cyan);
+            transition: transform 0.3s;
+        }
+
+        .selection-box-jasteb.active::after {
+            transform: rotate(180deg);
+            color: var(--neon-green);
+        }
+
+        /* Dropdown Menu - Improved */
+        .dropdown-jasteb {
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 0;
+            right: 0;
+            background: rgba(15, 15, 25, 0.98);
+            backdrop-filter: blur(30px);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            display: none;
+            z-index: 200;
+            box-shadow: 
+                0 20px 50px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .dropdown-jasteb.active {
+            display: block;
+            animation: dropdownSlide 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+
+        @keyframes dropdownSlide {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dropdown-item-jasteb {
+            padding: 18px 25px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.2rem;
+            color: var(--elite-silver);
+            cursor: pointer;
+            transition: all 0.2s;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dropdown-item-jasteb:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-item-jasteb:hover {
+            background: rgba(0, 249, 255, 0.1);
+            color: var(--neon-cyan);
+            padding-left: 30px;
+        }
+
+        .dropdown-item-jasteb .item-price {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            color: var(--elite-gold);
+            opacity: 0.8;
+        }
+
+        /* Price Display - Compact */
+        .price-section {
+            margin-top: 40px;
+        }
+
+        .price-display-compact {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .price-label-compact {
+            font-family: 'Oxanium', sans-serif;
+            font-weight: 500;
+            font-size: 1.4rem;
+            color: var(--elite-silver);
+            min-width: 100px;
+        }
+
+        .price-box-compact {
+            flex: 1;
+            background: rgba(10, 10, 20, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            padding: 18px 25px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            color: var(--elite-gold);
+            text-align: center;
+            min-width: 180px;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            animation: priceGlow 2s infinite alternate;
+        }
+
+        @keyframes priceGlow {
+            0% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.1); }
+            100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); }
+        }
+
+        /* Action Buttons */
+        .action-buttons-jasteb {
+            display: flex;
+            gap: 25px;
+            margin-top: 50px;
+            justify-content: center;
+        }
+
+        .futuristic-btn-jasteb {
+            font-family: 'Oxanium', 'Rajdhani', sans-serif;
+            font-weight: 600;
+            font-size: 1.4rem;
+            color: var(--elite-silver);
+            background: linear-gradient(145deg, 
+                rgba(18, 18, 32, 0.8), 
+                rgba(10, 10, 20, 0.9));
+            border: none;
+            border-radius: 12px;
+            padding: 20px 45px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            backdrop-filter: blur(15px);
+            box-shadow: 
+                0 10px 25px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                0 0 0 1px rgba(0, 249, 255, 0.2);
+            z-index: 1;
+        }
+
+        .futuristic-btn-jasteb::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(0, 249, 255, 0.2), 
+                rgba(176, 38, 255, 0.2));
+            border-radius: 12px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .futuristic-btn-jasteb:hover::before {
+            opacity: 1;
+        }
+
+        .futuristic-btn-jasteb:hover {
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 
+                0 15px 35px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 0 0 2px var(--neon-cyan),
+                0 0 25px rgba(0, 249, 255, 0.3);
+        }
+
+        .futuristic-btn-jasteb.primary {
+            background: linear-gradient(145deg, 
+                rgba(0, 249, 255, 0.15), 
+                rgba(176, 38, 255, 0.15));
+        }
+
+        .futuristic-btn-jasteb.primary:hover {
+            background: linear-gradient(145deg, 
+                rgba(0, 249, 255, 0.25), 
+                rgba(176, 38, 255, 0.25));
+        }
+
+        /* Footer */
+        .footer-jasteb {
+            text-align: center;
+            padding: 30px;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 300;
+            font-size: 0.9rem;
+            color: rgba(245, 245, 247, 0.4);
+            position: relative;
+            z-index: 100;
+            background: linear-gradient(to top, 
+                rgba(5, 5, 10, 0.95), 
+                transparent);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            margin-top: 60px;
+        }
+
+        /* Scrollbar Styling */
+        .dropdown-jasteb::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .dropdown-jasteb::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 3px;
+        }
+
+        .dropdown-jasteb::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, var(--neon-cyan), var(--neon-purple));
+            border-radius: 3px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .page-title-jasteb {
+                font-size: 3.5rem;
+            }
+            
+            .product-container-jasteb {
+                padding: 40px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .header-jasteb {
+                padding: 25px 40px;
+            }
+            
+            .logo-jasteb {
+                font-size: 2.8rem;
+            }
+            
+            .page-title-jasteb {
+                font-size: 3rem;
+                margin-bottom: 50px;
+            }
+            
+            .product-container-jasteb {
+                padding: 35px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-jasteb {
+                padding: 20px 30px;
+            }
+            
+            .logo-jasteb {
+                font-size: 2.2rem;
+                letter-spacing: 3px;
+            }
+            
+            .page-title-jasteb {
+                font-size: 2.4rem;
+                letter-spacing: 4px;
+                margin-bottom: 40px;
+            }
+            
+            .main-content-jasteb {
+                padding: 30px;
+            }
+            
+            .product-container-jasteb {
+                padding: 30px;
+            }
+            
+            .action-buttons-jasteb {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .futuristic-btn-jasteb {
+                width: 100%;
+            }
+            
+            .price-display-compact {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .price-box-compact {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header-jasteb {
+                padding: 15px 20px;
+            }
+            
+            .logo-jasteb {
+                font-size: 1.8rem;
+                letter-spacing: 2px;
+            }
+            
+            .page-title-jasteb {
+                font-size: 2rem;
+                letter-spacing: 3px;
+            }
+            
+            .main-content-jasteb {
+                padding: 20px;
+            }
+            
+            .product-container-jasteb {
+                padding: 25px;
+            }
+            
+            .section-title-jasteb {
+                font-size: 1.4rem;
+            }
+            
+            .selection-box-jasteb {
+                font-size: 1.1rem;
+                padding: 18px 20px;
+            }
+            
+            .price-label-compact {
+                font-size: 1.2rem;
+            }
+            
+            .price-box-compact {
+                font-size: 1.5rem;
+                padding: 15px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="animated-bg-jasteb"></div>
+    <div class="binary-rain" id="binaryRain"></div>
+    <div class="hexagon-pattern"></div>
+    
+    <header class="header-jasteb">
+        <div class="logo-jasteb">CuxxyzHost</div>
+    </header>
+    
+    <main class="main-content-jasteb">
+        <h1 class="page-title-jasteb">List-Jasteb</h1>
+        
+        <div class="product-container-jasteb">
+            <!-- Jasteb Selection -->
+            <div class="selection-section">
+                <div class="section-title-jasteb">Jasteb</div>
+                <div class="selection-box-jasteb" id="jastebSelector">
+                    <span id="selectedOption">- Pilih Produk -</span>
+                </div>
+                
+                <div class="dropdown-jasteb" id="jastebDropdown">
+                    <!-- Options will be populated by JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Price Display -->
+            <div class="price-section">
+                <div class="section-title-jasteb">Harga</div>
+                <div class="price-display-compact">
+                    <div class="price-label-compact">Harga:</div>
+                    <div class="price-box-compact" id="priceDisplay">Rp 0</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="action-buttons-jasteb">
+            <button class="futuristic-btn-jasteb primary" id="orderBtn">
+                <i class="fas fa-shopping-cart" style="margin-right: 10px;"></i>
+                Order Now
+            </button>
+            <button class="futuristic-btn-jasteb" id="backBtn">
+                <i class="fas fa-arrow-left" style="margin-right: 10px;"></i>
+                Back
+            </button>
+        </div>
+    </main>
+    
+    <footer class="footer-jasteb">
+        <div>© 2024 CuxxyzHost | Elite Cyber Network v3.0</div>
+    </footer>
+
+    <script>
+        // Product data
+        const products = [
+            { id: 1, name: "40+ Result", price: "Rp 3.000" },
+            { id: 2, name: "55+ Result", price: "Rp 4.000" },
+            { id: 3, name: "70+ Result", price: "Rp 5.000" },
+            { id: 4, name: "150+ Result", price: "Rp 10.000" },
+            { id: 5, name: "200+ Result", price: "Rp 15.000" },
+            { id: 6, name: "700+ Result", price: "Rp 20.000" }
+        ];
+        
+        // Current selection
+        let selectedProduct = null;
+        
+        // DOM elements
+        const jastebSelector = document.getElementById('jastebSelector');
+        const jastebDropdown = document.getElementById('jastebDropdown');
+        const selectedOption = document.getElementById('selectedOption');
+        const priceDisplay = document.getElementById('priceDisplay');
+        const orderBtn = document.getElementById('orderBtn');
+        const backBtn = document.getElementById('backBtn');
+        
+        // Create binary rain
+        function createBinaryRain() {
+            const container = document.getElementById('binaryRain');
+            const digitCount = 50;
+            
+            for (let i = 0; i < digitCount; i++) {
+                const digit = document.createElement('div');
+                digit.classList.add('binary-digit');
+                
+                // Random content (0 or 1)
+                digit.textContent = Math.random() > 0.5 ? '1' : '0';
+                
+                // Random position
+                digit.style.left = Math.random() * 100 + 'vw';
+                
+                // Random animation duration
+                const duration = Math.random() * 10 + 5;
+                digit.style.animationDuration = duration + 's';
+                
+                // Random delay
+                digit.style.animationDelay = Math.random() * 5 + 's';
+                
+                // Random font size
+                const size = Math.random() * 1 + 0.8;
+                digit.style.fontSize = size + 'rem';
+                
+                // Random opacity
+                digit.style.opacity = Math.random() * 0.5 + 0.2;
+                
+                container.appendChild(digit);
+            }
+        }
+        
+        // Populate dropdown with products
+        function populateDropdown() {
+            products.forEach(product => {
+                const item = document.createElement('div');
+                item.classList.add('dropdown-item-jasteb');
+                item.setAttribute('data-id', product.id);
+                item.innerHTML = `
+                    <span>${product.name}</span>
+                    <span class="item-price">${product.price}</span>
+                `;
+                
+                item.addEventListener('click', function() {
+                    selectProduct(product);
+                });
+                
+                jastebDropdown.appendChild(item);
+            });
+        }
+        
+        // Select a product
+        function selectProduct(product) {
+            selectedProduct = product;
+            
+            // Update display
+            selectedOption.textContent = product.name;
+            priceDisplay.textContent = product.price;
+            
+            // Add selection animation
+            priceDisplay.style.transform = 'scale(1.1)';
+            priceDisplay.style.color = '#ffd700';
+            
+            setTimeout(() => {
+                priceDisplay.style.transform = 'scale(1)';
+            }, 300);
+            
+            // Close dropdown
+            jastebSelector.classList.remove('active');
+            jastebDropdown.classList.remove('active');
+            
+            // Enable order button
+            orderBtn.style.opacity = '1';
+            orderBtn.style.cursor = 'pointer';
+        }
+        
+        // Toggle dropdown
+        jastebSelector.addEventListener('click', function(e) {
+            e.stopPropagation();
+            jastebSelector.classList.toggle('active');
+            jastebDropdown.classList.toggle('active');
+        });
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!jastebSelector.contains(e.target) && !jastebDropdown.contains(e.target)) {
+                jastebSelector.classList.remove('active');
+                jastebDropdown.classList.remove('active');
+            }
+        });
+        
+        // Order button functionality
+        orderBtn.addEventListener('click', function() {
+            if (!selectedProduct) {
+                // Show error animation
+                jastebSelector.style.borderColor = '#ff4444';
+                jastebSelector.style.boxShadow = '0 0 20px rgba(255, 68, 68, 0.5)';
+                
+                setTimeout(() => {
+                    jastebSelector.style.borderColor = '';
+                    jastebSelector.style.boxShadow = '';
+                }, 1000);
+                
+                alert('Silakan pilih produk terlebih dahulu!');
+                return;
+            }
+            
+            const phoneNumber = '6283128490718';
+            const message = `Hallo, saya mau order!%0Aproduk : jasteb%0Ajumlah : ${selectedProduct.name}%0Aharga : ${selectedProduct.price}`;
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
+            
+            // Open WhatsApp in new tab
+            window.open(whatsappURL, '_blank');
+            
+            // Button feedback
+            const originalHTML = orderBtn.innerHTML;
+            orderBtn.innerHTML = '<i class="fas fa-check" style="margin-right: 10px;"></i> Order Sent!';
+            orderBtn.style.background = 'linear-gradient(145deg, rgba(0, 255, 136, 0.25), rgba(0, 200, 100, 0.2))';
+            orderBtn.style.borderColor = '#00ff88';
+            
+            setTimeout(() => {
+                orderBtn.innerHTML = originalHTML;
+                orderBtn.style.background = '';
+                orderBtn.style.borderColor = '';
+            }, 3000);
+        });
+        
+        // Back button functionality
+        backBtn.addEventListener('click', function() {
+            // Smooth transition
+            document.body.style.opacity = '0.7';
+            document.body.style.transition = 'opacity 0.4s';
+            
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 400);
+        });
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            createBinaryRain();
+            populateDropdown();
+            
+            // Select first product by default
+            if (products.length > 0) {
+                selectProduct(products[0]);
+            }
+            
+            // Add hover effects to dropdown items
+            const dropdownItems = document.querySelectorAll('.dropdown-item-jasteb');
+            dropdownItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateX(5px)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateX(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
