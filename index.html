@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome | CuxxyzHost</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Orbitron',sans-serif}
+body{
+  background:black;
+  color:#6fe9ff;
+  height:100vh;
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+canvas{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+}
+
+.container{
+  text-align:center;
+}
+
+h1{
+  font-size:36px;
+  letter-spacing:3px;
+  text-shadow:0 0 25px #4ffcff;
+}
+
+p{
+  margin-top:12px;
+  font-size:14px;
+  color:#bdefff;
+}
+
+button{
+  margin-top:30px;
+  padding:12px 40px;
+  font-size:14px;
+  border:none;
+  cursor:pointer;
+  color:#000;
+  background:linear-gradient(90deg,#4ffcff,#b56bff);
+  box-shadow:0 0 20px #4ffcff;
+}
+button:hover{opacity:.85}
+</style>
+</head>
+
+<body>
+
+<canvas id="stars"></canvas>
+
+<div class="container">
+  <h1 id="typing"></h1>
+  <p>Produk premium, produk berkualitas, Bergaransi</p>
+  <button onclick="location.href='home.html'">NEXT</button>
+</div>
+
+<script>
+/* TYPING */
+const text="WELCOME TO CUXXYZHOST";
+let i=0;
+const el=document.getElementById("typing");
+function type(){
+  if(i<text.length){
+    el.textContent+=text[i++];
+    setTimeout(type,80);
+  }
+}
+type();
+
+/* STARS */
+const c=document.getElementById("stars"),x=c.getContext("2d");
+function resize(){c.width=innerWidth;c.height=innerHeight}
+resize();onresize=resize;
+let stars=[...Array(120)].map(()=>({
+  x:Math.random()*c.width,
+  y:Math.random()*c.height,
+  r:Math.random()*1.5,
+  dx:(Math.random()-.5)*.3,
+  dy:(Math.random()-.5)*.3
+}));
+function draw(){
+  x.clearRect(0,0,c.width,c.height);
+  x.fillStyle="#6fe9ff";
+  stars.forEach(s=>{
+    x.beginPath();x.arc(s.x,s.y,s.r,0,Math.PI*2);x.fill();
+    s.x+=s.dx;s.y+=s.dy;
+    if(s.x<0||s.x>c.width)s.dx*=-1;
+    if(s.y<0||s.y>c.height)s.dy*=-1;
+  });
+  requestAnimationFrame(draw);
+}
+draw();
+</script>
+
+</body>
+  </html>
