@@ -1,0 +1,162 @@
+<!DOCTYPE html><html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CuxxyzHost</title>  <!-- PREMIUM CYBER FONT -->  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Orbitron',sans-serif}
+    body{
+      background:#05070f;
+      color:#eaffff;
+      height:100vh;
+      overflow:hidden;
+    }
+
+    /* ANIMATED CYBER BACKGROUND */
+    body::before{
+      content:'';
+      position:fixed;
+      inset:0;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(0,255,255,.18), transparent 45%),
+        radial-gradient(circle at 80% 70%, rgba(170,0,255,.18), transparent 45%),
+        repeating-linear-gradient(120deg, rgba(255,255,255,.03) 0 1px, transparent 1px 120px);
+      animation:bgFloat 28s linear infinite;
+      z-index:-1;
+    }
+    @keyframes bgFloat{to{background-position:500px 500px}}
+
+    /* TOP BAR */
+    .topbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:18px 34px;
+      position:relative;
+    }
+
+    /* TITLE */
+    .title{
+      font-size:20px;
+      letter-spacing:3px;
+      font-weight:700;
+      background:linear-gradient(90deg,#00f7ff,#b26bff,#00f7ff);
+      background-size:500% 100%;
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      animation:
+        gradientMove 5s linear infinite,
+        float 4s ease-in-out infinite;
+      text-shadow:
+        0 2px 0 rgba(0,0,0,.9),
+        0 6px 16px rgba(0,0,0,.8),
+        0 0 18px rgba(0,247,255,.45);
+    }
+    @keyframes gradientMove{to{background-position:500% 0}}
+    @keyframes float{50%{transform:translateY(-6px)}}
+
+    /* DIVIDER */
+    .divider{
+      height:2px;
+      width:100%;
+      background:linear-gradient(90deg,transparent,#00f7ff,#ff00ff,#00f7ff,transparent);
+      background-size:500% 100%;
+      animation:lineMove 4s linear infinite;
+      box-shadow:0 0 12px rgba(0,247,255,.9);
+    }
+    @keyframes lineMove{to{background-position:500% 0}}
+
+    /* MENU BUTTON */
+    .menu-btn{
+      width:40px;
+      height:30px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      cursor:pointer;
+    }
+    .menu-btn span{
+      height:4px;
+      width:100%;
+      background:linear-gradient(90deg,#00f7ff,#ff00ff,#00f7ff);
+      background-size:400% 100%;
+      animation:gradientMove 3s linear infinite;
+      box-shadow:0 0 10px rgba(0,247,255,.9);
+    }
+
+    /* MENU */
+    .menu{
+      position:absolute;
+      top:70px;
+      right:34px;
+      background:#0b1020;
+      border:1px solid #00f7ff;
+      box-shadow:0 0 30px rgba(0,247,255,.6);
+      display:none;
+      min-width:230px;
+      z-index:10;
+    }
+    .menu-item{
+      padding:14px 18px;
+      border-bottom:1px solid rgba(255,255,255,.1);
+      cursor:pointer;
+      font-size:14px;
+    }
+    .menu-item:hover{background:rgba(0,247,255,.08)}
+
+    .submenu{
+      display:none;
+      padding:12px 18px;
+      font-size:13px;
+      line-height:1.9;
+      background:#080c18;
+    }
+    .submenu a{
+      color:#4fdcff;
+      text-decoration:none;
+      display:block;
+      margin:4px 0;
+    }
+    .submenu a:hover{text-decoration:underline}
+
+  </style></head>
+<body>  <div class="topbar">
+    <div id="typing" class="title"></div><div class="menu-btn" onclick="toggleMenu()">
+  <span></span><span></span><span></span>
+</div>
+
+<div class="menu" id="menu">
+  <div class="menu-item" onclick="toggleSub('admin')">Contact Admin</div>
+  <div class="submenu" id="admin">
+    <a href="https://wa.me/6283128490718" target="_blank">WhatsApp</a>
+    <a href="https://t.me/cuxxyzhost" target="_blank">Telegram</a>
+  </div>
+  <div class="menu-item" onclick="toggleSub('saluran')">Saluran</div>
+  <div class="submenu" id="saluran">
+    <a href="https://whatsapp.com/channel/0029VbBroNiCMY09CSdh8Q0n" target="_blank">WhatsApp Channel</a>
+    <a href="https://t.me/testibycuxxyz" target="_blank">Telegram Channel</a>
+  </div>
+</div>
+
+  </div>  <div class="divider"></div><script>
+  const text = 'CuxxyzHost';
+  let i = 0;
+  const el = document.getElementById('typing');
+  function type(){
+    if(i < text.length){
+      el.textContent += text.charAt(i);
+      i++;
+      setTimeout(type, 90);
+    }
+  }
+  type();
+
+  function toggleMenu(){
+    const m=document.getElementById('menu');
+    m.style.display=m.style.display==='block'?'none':'block';
+  }
+  function toggleSub(id){
+    const s=document.getElementById(id);
+    s.style.display=s.style.display==='block'?'none':'block';
+  }
+</script></body>
+  </html>
