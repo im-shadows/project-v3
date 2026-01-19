@@ -1,0 +1,194 @@
+<!DOCTYPE html><html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CuxxyzHost | Cyber Premium</title><!-- ORBITRON PREMIUM --><link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet"><style>
+:root{
+  --bg:#050814;
+  --panel:#0b1024;
+  --r1:#00eaff;
+  --r2:#8b5cf6;
+  --r3:#22ff88;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:'Orbitron',sans-serif;
+  background:radial-gradient(circle at top,#0b1235,#02030a 70%);
+  color:#e6f4ff;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* BACKGROUND CYBER */
+.bg{
+  position:fixed;inset:0;
+  background:
+    linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+  background-size:80px 80px;
+  animation:bgMove 40s linear infinite;
+  pointer-events:none;
+}
+@keyframes bgMove{to{background-position:80px 80px}}
+
+/* HEADER */
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:22px 32px;
+  position:relative;
+  z-index:10;
+}
+.logo{
+  font-size:20px;
+  letter-spacing:2px;
+  color:#eaffff;
+  animation:logoGlow 6s linear infinite;
+}
+@keyframes logoGlow{
+  0%{text-shadow:0 0 6px var(--r1)}
+  50%{text-shadow:0 0 12px var(--r2)}
+  100%{text-shadow:0 0 10px var(--r3)}
+}
+
+/* MENU */
+.menu-btn{
+  width:42px;height:42px;
+  border-radius:10px;
+  background:rgba(10,18,40,.9);
+  border:1px solid #1e2b55;
+  color:#eaffff;
+  font-size:20px;
+  cursor:pointer;
+}
+.menu{
+  position:absolute;
+  top:70px;right:32px;
+  background:rgba(10,18,40,.98);
+  border:1px solid #1e2b55;
+  border-radius:14px;
+  padding:10px;
+  display:none;
+  z-index:999;
+}
+.menu .item{
+  padding:10px 14px;
+  border-radius:10px;
+  cursor:pointer;
+}
+.menu .item:hover{background:#121a3a}
+.menu .sub{
+  font-size:12px;
+  opacity:.8;
+  padding:6px 18px;
+  cursor:pointer;
+}
+
+/* HERO */
+.hero{
+  text-align:center;
+  margin-top:90px;
+  position:relative;
+  z-index:5;
+}
+.hero h1{
+  font-size:22px;
+  letter-spacing:2px;
+}
+.cursor{display:inline-block;width:10px;animation:blink 1s infinite}
+@keyframes blink{50%{opacity:0}}
+.hero p{
+  opacity:.65;
+  margin-top:10px;
+  font-size:12px;
+}
+
+/* BUTTONS */
+.buttons{
+  display:flex;
+  justify-content:center;
+  gap:26px;
+  margin-top:70px;
+  flex-wrap:wrap;
+}
+.rpg-btn{
+  position:relative;
+  padding:16px 46px;
+  background:rgba(8,14,34,.9);
+  border-radius:14px;
+  letter-spacing:1.5px;
+  cursor:pointer;
+}
+.rpg-btn::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:14px;
+  padding:2px;
+  background:linear-gradient(90deg,var(--r1),var(--r2),var(--r3),var(--r1));
+  background-size:400% 100%;
+  mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  animation:snake 3s linear infinite;
+}
+@keyframes snake{
+  0%{background-position:0% 50%}
+  100%{background-position:400% 50%}
+}
+
+/* FOOTER */
+footer{
+  margin-top:90px;
+  padding-bottom:20px;
+  text-align:center;
+  font-size:11px;
+  opacity:.55;
+}
+</style></head>
+<body>
+<div class="bg"></div><header>
+  <div class="logo">CuxxyzHost</div>
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  <div class="menu" id="menu">
+    <div class="item" onclick="toggleSub('contact')">Contact Admin</div>
+    <div id="contact" style="display:none">
+      <div class="sub" onclick="window.open('https://wa.me/6283128490718')">WhatsApp</div>
+      <div class="sub" onclick="window.open('https://t.me/cuxxyzhost')">Telegram</div>
+    </div>
+    <div class="item" onclick="toggleSub('channel')">Saluran</div>
+    <div id="channel" style="display:none">
+      <div class="sub" onclick="window.open('https://whatsapp.com/channel/0029VbBroNiCMY09CSdh8Q0n')">WA Channel</div>
+      <div class="sub" onclick="window.open('https://t.me/testibycuxxyz')">Telegram Channel</div>
+    </div>
+  </div>
+</header><section class="hero">
+  <h1><span id="typing"></span><span class="cursor">|</span></h1>
+  <p>// cyber premium digital service</p>
+</section><div class="buttons">
+  <div class="rpg-btn">JASTEB</div>
+  <div class="rpg-btn">RESELLER JASTEB</div>
+</div><footer>© 2026 CuxxyzHost — Cyber Premium UI</footer><script>
+const text = '< List Produk CuxxyzHost />';
+let i = 0;
+const el = document.getElementById('typing');
+(function type(){
+  if(i < text.length){
+    el.innerHTML += text.charAt(i);
+    i++;
+    setTimeout(type, 80);
+  }
+})();
+
+function toggleMenu(){
+  const m=document.getElementById('menu');
+  m.style.display=m.style.display==='block'?'none':'block';
+}
+function toggleSub(id){
+  const e=document.getElementById(id);
+  e.style.display=e.style.display==='block'?'none':'block';
+}
+</script></body>
+</html>
