@@ -1,0 +1,105 @@
+<!DOCTYPE html><html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CuxxyzHost</title>  <!-- PREMIUM CYBER FONT -->  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Orbitron',sans-serif}
+    body{
+      background:#06080f;
+      color:#eaffff;
+      height:100vh;
+      overflow:hidden;
+    }
+
+    /* MOVING CYBER BACKGROUND */
+    body::before{
+      content:'';
+      position:fixed;
+      inset:0;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(0,255,255,.12), transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(140,0,255,.12), transparent 40%),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.025) 0 1px, transparent 1px 90px);
+      animation:bgShift 25s linear infinite;
+      z-index:-1;
+    }
+    @keyframes bgShift{
+      to{background-position:300px 300px}
+    }
+
+    /* TITLE WRAP */
+    .header{
+      position:absolute;
+      top:24px;
+      left:32px;
+    }
+
+    /* TITLE */
+    .title{
+      font-size:32px;
+      letter-spacing:2.5px;
+      background:linear-gradient(90deg,#00f7ff,#9b5cff,#00f7ff);
+      background-size:300% 100%;
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      animation:
+        gradientMove 4s linear infinite,
+        float 4s ease-in-out infinite,
+        blink 1.8s infinite alternate;
+      text-shadow:
+        0 2px 0 rgba(0,0,0,.6),
+        0 10px 20px rgba(0,0,0,.5);
+    }
+
+    @keyframes gradientMove{
+      to{background-position:300% 0}
+    }
+    @keyframes float{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-6px)}
+    }
+    @keyframes blink{
+      from{opacity:1}
+      to{opacity:.75}
+    }
+
+    /* NEON RPG LINE */
+    .neon-line{
+      margin-top:12px;
+      width:280px;
+      height:3px;
+      background:linear-gradient(90deg,#00f7ff,#ff00ff,#00f7ff);
+      background-size:400% 100%;
+      animation:lineMove 3s linear infinite;
+      box-shadow:0 0 12px rgba(0,247,255,.9);
+    }
+    @keyframes lineMove{
+      to{background-position:400% 0}
+    }
+
+    /* TYPING CURSOR */
+    .cursor::after{
+      content:'|';
+      margin-left:4px;
+      animation:cursorBlink 1s infinite;
+    }
+    @keyframes cursorBlink{50%{opacity:0}}
+
+  </style></head>
+<body>  <div class="header">
+    <div id="typing" class="title cursor"></div>
+    <div class="neon-line"></div>
+  </div><script>
+  const text = 'CuxxyzHost';
+  let i = 0;
+  const el = document.getElementById('typing');
+  function type(){
+    if(i < text.length){
+      el.textContent += text.charAt(i);
+      i++;
+      setTimeout(type, 85);
+    }
+  }
+  type();
+</script></body>
+</html>
