@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CuxxyzHost</title>
+
+<!-- PREMIUM CYBER FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:#05070f;
+  color:#eaffff;
+  font-family:'Rajdhani',sans-serif;
+  height:100vh;
+  overflow:hidden;
+}
+
+/* PARTICLE BACKGROUND */
+canvas{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+}
+
+/* HEADER */
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 30px;
+  background:url('https://files.catbox.moe/5rfmqc.jpg') center/cover;
+  border-bottom:1px solid rgba(100,220,255,.35);
+}
+
+/* LEFT */
+.left{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.logo{
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  object-fit:cover;
+  box-shadow:0 0 25px rgba(100,220,255,.9);
+}
+
+/* TITLE */
+.title{
+  font-size:30px;
+  letter-spacing:4px;
+  color:#6fe7ff;
+  text-shadow:
+    0 2px 0 #012,
+    0 12px 30px rgba(0,0,0,.9),
+    0 0 55px rgba(100,220,255,1);
+  animation:float 4s ease-in-out infinite;
+}
+@keyframes float{
+  50%{transform:translateY(-6px)}
+}
+
+/* MENU BUTTON */
+.menu-btn{
+  width:42px;
+  height:32px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  cursor:pointer;
+}
+.menu-btn span{
+  height:4px;
+  width:100%;
+  background:linear-gradient(90deg,#6fe7ff,#b26bff,#6fe7ff);
+  box-shadow:0 0 12px rgba(100,220,255,1);
+}
+
+/* MENU */
+.menu{
+  position:absolute;
+  top:78px;
+  right:30px;
+  background:#0a1020;
+  border:1px solid #6fe7ff;
+  box-shadow:0 0 35px rgba(100,220,255,.7);
+  display:none;
+  min-width:230px;
+  z-index:10;
+}
+.menu-item{
+  padding:14px 18px;
+  cursor:pointer;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.menu-item:hover{background:rgba(100,220,255,.08)}
+
+.submenu{
+  display:none;
+  padding:12px 18px;
+  background:#080c18;
+}
+.submenu a{
+  display:block;
+  color:#6fe7ff;
+  text-decoration:none;
+  margin:6px 0;
+}
+.submenu a:hover{text-decoration:underline}
+
+/* MUSIC BUTTON */
+.music{
+  position:fixed;
+  bottom:24px;
+  right:24px;
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  border:1px solid #6fe7ff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  box-shadow:0 0 30px rgba(100,220,255,.9);
+}
+.music::before{
+  content:'♫';
+  font-size:24px;
+  color:#6fe7ff;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="bg"></canvas>
+
+<div class="header">
+  <div class="left">
+    <img src="https://files.catbox.moe/3ntvth.jpg" class="logo">
+    <div id="typing" class="title"></div>
+  </div>
+
+  <div class="menu-btn" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+
+  <div class="menu" id="menu">
+    <div class="menu-item" onclick="toggleSub('admin')">Contact Admin</div>
+    <div class="submenu" id="admin">
+      <a href="https://wa.me/6283128490718" target="_blank">WhatsApp</a>
+      <a href="https://t.me/cuxxyzhost" target="_blank">Telegram</a>
+    </div>
+    <div class="menu-item" onclick="toggleSub('saluran')">Saluran</div>
+    <div class="submenu" id="saluran">
+      <a href="https://whatsapp.com/channel/0029VbBroNiCMY09CSdh8Q0n" target="_blank">WhatsApp Channel</a>
+      <a href="https://t.me/testibycuxxyz" target="_blank">Telegram Channel</a>
+    </div>
+  </div>
+</div>
+
+<audio id="music" src="musik.mp3" loop></audio>
+<div class="music" onclick="toggleMusic()"></div>
+
+<script>
+/* TITLE TYPING + DELETE (SMOOTH) */
+const text = "CUXXYZHOST";
+let i=0, del=false;
+const el=document.getElementById('typing');
+
+function typing(){
+  if(!del){
+    el.textContent=text.slice(0,++i);
+    if(i===text.length) setTimeout(()=>del=true,1200);
+  }else{
+    el.textContent=text.slice(0,--i);
+    if(i===0) del=false;
+  }
+  setTimeout(typing, del?60:90);
+}
+typing();
+
+/* MENU */
+function toggleMenu(){
+  const m=document.getElementById('menu');
+  m.style.display=m.style.display==='block'?'none':'block';
+}
+function toggleSub(id){
+  const s=document.getElementById(id);
+  s.style.display=s.style.display==='block'?'none':'block';
+}
+
+/* MUSIC (1x CLICK SAJA) */
+const audio=document.getElementById('music');
+audio.volume=0.6;
+audio.play().catch(()=>{});
+let playing=true;
+function toggleMusic(){
+  playing?audio.pause():audio.play();
+  playing=!playing;
+}
+
+/* PARTICLES */
+const c=document.getElementById('bg'),ctx=c.getContext('2d');
+let w,h,p=[];
+function resize(){w=c.width=innerWidth;h=c.height=innerHeight}
+resize();onresize=resize;
+
+for(let i=0;i<120;i++)
+p.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.5+0.3,dx:(Math.random()-.5)*.25,dy:(Math.random()-.5)*.25});
+
+function draw(){
+  ctx.clearRect(0,0,w,h);
+  ctx.fillStyle='#6fe7ff';
+  p.forEach(s=>{
+    ctx.beginPath();
+    ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+    ctx.fill();
+    s.x+=s.dx;s.y+=s.dy;
+    if(s.x<0||s.x>w)s.dx*=-1;
+    if(s.y<0||s.y>h)s.dy*=-1;
+  });
+  requestAnimationFrame(draw);
+}
+draw();
+</script>
+
+</body>
+  </html>
