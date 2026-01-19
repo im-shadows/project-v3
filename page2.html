@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CUXXYZHOST</title>
+<style>
+body, html {
+    margin:0; padding:0; height:100%; overflow:hidden; font-family:Arial,sans-serif; background:black;
+}
+canvas#particles {position:absolute; top:0; left:0; width:100%; height:100%; z-index:0;}
+#page2 {position:absolute; top:0; left:0; width:100%; height:100%; z-index:1;}
+
+/* ===== Header Horizontal (foto asli) ===== */
+#header-strip {
+    position:absolute; top:0; left:0; width:100%; height:auto; display:flex; align-items:center; gap:15px; padding:10px 20px;
+    z-index:2;
+}
+#header-strip img {height:80px; width:auto;} /* Gunakan ukuran asli foto, jangan zoom */
+#title {font-size:2rem; color:#00f0ff; white-space:nowrap; font-weight:bold;}
+#title span{display:inline-block; animation:floatText 2s infinite;}
+@keyframes floatText{0%,100%{transform:translateY(0);}50%{transform:translateY(-5px);}}
+
+/* ===== Hamburger Menu Berkelas ===== */
+#menu-btn{position:absolute; top:30px; right:20px; width:35px; height:25px; cursor:pointer; z-index:3; display:flex; flex-direction:column; justify-content:space-between;}
+.bar{height:4px; width:100%; background:#00f0ff; border-radius:2px; transition:0.3s;}
+#popup{position:absolute; top:60px; right:20px; background:rgba(0,0,0,0.95); color:white; padding:15px 20px; border-radius:12px; display:none; flex-direction:column; gap:10px; z-index:4; min-width:180px; font-size:0.95rem;}
+#popup strong{margin-top:5px;}
+#popup a{color:#00f0ff; text-decoration:none;}
+
+/* ===== Musik Button ===== */
+#music-btn{position:absolute; bottom:20px; right:20px; width:35px; height:35px; border-radius:50%; background:rgba(0,0,0,0.7); display:flex; justify-content:center; align-items:center; cursor:pointer; color:#00f0ff; font-weight:bold; font-size:1rem; z-index:3; box-shadow:0 2px 6px rgba(0,0,0,0.4);}
+
+/* ===== Responsive ===== */
+@media(max-width:767px){
+    #header-strip {padding:5px 15px;}
+    #header-strip img {height:60px;}
+    #title {font-size:1.5rem;}
+}
+</style>
+</head>
+<body>
+
+<div id="page2">
+
+    <!-- Header Strip -->
+    <div id="header-strip">
+        <img src="https://files.catbox.moe/5rfmqc.jpg" alt="Header Foto">
+        <div id="title"></div>
+    </div>
+
+    <!-- Hamburger Menu -->
+    <div id="menu-btn">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+
+    <!-- Popup Menu -->
+    <div id="popup">
+        <div id="contact-section">
+            <strong>Contact Admin</strong>
+            <a href="https://wa.me/6283128490718" target="_blank">Whatsapp</a>
+            <a href="https://t.me/cuxxyzhost" target="_blank">Telegram</a>
+        </div>
+        <div id="channel-section">
+            <strong>Saluran</strong>
+            <a href="https://whatsapp.com/channel/0029VbBroNiCMY09CSdh8Q0n" target="_blank">Whatsapp Channel</a>
+            <a href="https://t.me/testibycuxxyz" target="_blank">Telegram Channel</a>
+        </div>
+    </div>
+
+    <!-- Music Button -->
+    <div id="music-btn">♪</div>
+    <audio id="bg-music" src="musik.mp3" loop></audio>
+
+</div>
+
+<!-- Partikel Background -->
+<canvas id="particles"></canvas>
+
+<script>
+/* ===== Partikel ===== */
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+let particlesArray=[];
+class Particle{constructor(){this.x=Math.random()*canvas.width;this.y=Math.random()*canvas.height;this.size=Math.random()*3+1;this.speedX=Math.random()*1-0.5;this.speedY=Math.random()*1-0.5;}update(){this.x+=this.speedX;this.y+=this.speedY;if(this.x<0)this.x=canvas.width;if(this.x>canvas.width)this.x=0;if(this.y<0)this.y=canvas.height;if(this.y>canvas.height)this.y=0;}draw(){ctx.fillStyle='#00f0ff';ctx.beginPath();ctx.arc(this.x,this.y,this.size,0,Math.PI*2);ctx.fill();}}
+function initParticles(){particlesArray=[];for(let i=0;i<120;i++){particlesArray.push(new Particle());}}
+function animateParticles(){ctx.clearRect(0,0,canvas.width,canvas.height);particlesArray.forEach(p=>{p.update();p.draw();});requestAnimationFrame(animateParticles);}
+initParticles();animateParticles();
+window.addEventListener('resize',()=>{canvas.width=window.innerWidth;canvas.height=window.innerHeight; initParticles();});
+
+/* ===== Header Title Typing ===== */
+const titleEl = document.getElementById('title');
+const titleText = "CUXXYZHOST";
+let index=0, deleting=false;
+function initTitleTyping(){
+    setInterval(()=>{
+        if(!deleting){titleEl.textContent=titleText.substring(0,index+1); index++; if(index===titleText.length) deleting=true;}
+        else{titleEl.textContent=titleText.substring(0,index-1); index--; if(index===0) deleting=false;}
+    },200);
+}
+initTitleTyping();
+
+/* ===== Hamburger Menu ===== */
+const menuBtn = document.getElementById('menu-btn');
+const popup = document.getElementById('popup');
+menuBtn.addEventListener('click', ()=>{popup.style.display=popup.style.display==='flex'?'none':'flex';});
+
+/* ===== Musik Button ===== */
+const musicBtn = document.getElementById('music-btn');
+const bgMusic = document.getElementById('bg-music');
+bgMusic.play();
+musicBtn.addEventListener('click', ()=>{
+    if(bgMusic.paused){bgMusic.play(); musicBtn.style.color="#00f0ff";}
+    else{bgMusic.pause(); musicBtn.style.color="#ff0000";}
+});
+</script>
+
+</body>
+</html>
