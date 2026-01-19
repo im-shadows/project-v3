@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Orbitron',sans-serif}
+
+body{
+  background:black;
+  color:#5fe8ff;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+}
+
+canvas{position:fixed;inset:0;z-index:-1}
+
+.container{
+  text-align:center;
+  padding:20px;
+  max-width:90%;
+}
+
+h1{
+  font-size:clamp(22px,6vw,36px);
+  display:inline-block;
+  position:relative;
+  letter-spacing:3px;
+}
+
+h1::after{
+  content:"";
+  width:2px;
+  height:1.2em;
+  background:#5fe8ff;
+  display:inline-block;
+  margin-left:6px;
+  animation:blink 1s infinite;
+}
+
+@keyframes blink{
+  0%,50%{opacity:1}
+  51%,100%{opacity:0}
+}
+
+p{
+  margin-top:14px;
+  font-size:clamp(12px,3.5vw,14px);
+  color:#bdefff;
+}
+
+button{
+  margin-top:30px;
+  padding:12px 40px;
+  background:none;
+  color:#5fe8ff;
+  border:2px solid #5fe8ff;
+  cursor:pointer;
+  box-shadow:0 0 18px #5fe8ff;
+}
+button:hover{
+  background:#5fe8ff;
+  color:black;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="stars"></canvas>
+
+<div class="container">
+  <h1 id="typing"></h1>
+  <p>Produk premium, berkualitas, Bergaransi</p>
+  <button onclick="goNext()">NEXT</button>
+</div>
+
+<script>
+const text="WELCOME TO CUXXYZHOST";
+let i=0,dir=true,el=document.getElementById("typing");
+
+function loop(){
+  if(dir){
+    if(i<text.length){i++}
+    else{setTimeout(()=>dir=false,800)}
+  }else{
+    if(i>0){i--}
+    else{setTimeout(()=>dir=true,500)}
+  }
+  el.textContent=text.slice(0,i);
+  setTimeout(loop,80);
+}
+loop();
+
+function goNext(){
+  sessionStorage.setItem("allowHome","yes");
+  location.href="home.html";
+}
+
+/* particles */
+const c=document.getElementById("stars"),x=c.getContext("2d");
+function resize(){c.width=innerWidth;c.height=innerHeight}
+resize();onresize=resize;
+let s=[...Array(120)].map(()=>({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*1.4,dx:(Math.random()-.5)*.3,dy:(Math.random()-.5)*.3}));
+(function draw(){
+  x.clearRect(0,0,c.width,c.height);
+  x.fillStyle="#5fe8ff";
+  s.forEach(a=>{
+    x.beginPath();x.arc(a.x,a.y,a.r,0,Math.PI*2);x.fill();
+    a.x+=a.dx;a.y+=a.dy;
+    if(a.x<0||a.x>c.width)a.dx*=-1;
+    if(a.y<0||a.y>c.height)a.dy*=-1;
+  });
+  requestAnimationFrame(draw);
+})();
+</script>
+
+</body>
+</html>
