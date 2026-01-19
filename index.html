@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CUXXYZHOST - Welcome</title>
+<style>
+    /* ===== Global ===== */
+    body, html {
+        margin:0;
+        padding:0;
+        height:100%;
+        overflow:hidden;
+        font-family: 'Arial', sans-serif;
+        background:black;
+    }
+
+    canvas#particles {
+        position:absolute;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        z-index:0;
+    }
+
+    #page1 {
+        position:absolute;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        flex-direction:column;
+        color:white;
+        text-align:center;
+        padding:20px;
+        z-index:1;
+    }
+
+    /* ===== Typing Text ===== */
+    .typing {
+        color:#00f0ff;
+        font-weight:bold;
+        white-space:nowrap;
+        overflow:hidden;
+        border-right:.15em solid #00f0ff;
+        animation:blink-caret .7s step-end infinite;
+    }
+
+    @keyframes blink-caret {50% {border-color: transparent;}}
+
+    /* Responsive font size */
+    @media (min-width: 768px) {
+        .typing {font-size:3rem;}
+        .sub-title {font-size:1.5rem;}
+        .btn {font-size:1.2rem; padding:18px 40px;}
+    }
+    @media (max-width: 767px) {
+        .typing {font-size:2rem;}
+        .sub-title {font-size:1rem;}
+        .btn {font-size:1rem; padding:12px 30px;}
+    }
+
+    .sub-title {
+        color:white;
+        margin-top:15px;
+    }
+
+    /* ===== Button Next ===== */
+    .btn {
+        margin-top:40px;
+        cursor:pointer;
+        border:none;
+        border-radius:50px;
+        background:linear-gradient(90deg,#00f0ff,#0040ff);
+        color:white;
+        font-weight:bold;
+        text-transform:uppercase;
+        transition:0.4s;
+        box-shadow:0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .btn:hover {
+        transform:translateY(-3px) scale(1.05);
+        box-shadow:0 8px 20px rgba(0,0,0,0.5);
+    }
+</style>
+</head>
+<body>
+
+<div id="page1">
+    <div class="typing" id="welcome-text"></div>
+    <div class="sub-title">Produk Premium - Produk Berkualitas - Produk Bergaransi</div>
+    <button class="btn" id="next-btn">Next</button>
+</div>
+
+<canvas id="particles"></canvas>
+
+<script>
+/* ===== Partikel ===== */
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particlesArray = [];
+class Particle {
+    constructor(){
+        this.x = Math.random()*canvas.width;
+        this.y = Math.random()*canvas.height;
+        this.size = Math.random()*3+1;
+        this.speedX = Math.random()*1-0.5;
+        this.speedY = Math.random()*1-0.5;
+    }
+    update(){this.x += this.speedX; this.y += this.speedY; if(this.x<0)this.x=canvas.width;if(this.x>canvas.width)this.x=0;if(this.y<0)this.y=canvas.height;if(this.y>canvas.height)this.y=0;}
+    draw(){ctx.fillStyle = '#00f0ff';ctx.beginPath();ctx.arc(this.x,this.y,this.size,0,Math.PI*2);ctx.fill();}
+}
+function initParticles(){particlesArray=[];for(let i=0;i<100;i++){particlesArray.push(new Particle());}}
+function animateParticles(){ctx.clearRect(0,0,canvas.width,canvas.height);particlesArray.forEach(p=>{p.update();p.draw();});requestAnimationFrame(animateParticles);}
+initParticles();animateParticles();
+window.addEventListener('resize',()=>{canvas.width=window.innerWidth;canvas.height=window.innerHeight; initParticles();});
+
+/* ===== Typing Text ===== */
+const welcomeText = "WELCOME TO CUXXYZHOST";
+let i = 0;
+function typeWriter() {
+    if (i < welcomeText.length) {
+        document.getElementById("welcome-text").innerHTML += welcomeText.charAt(i);
+        i++;
+        setTimeout(typeWriter, 100);
+    }
+}
+typeWriter();
+
+/* ===== Next Button ===== */
+document.getElementById('next-btn').addEventListener('click', ()=>{
+    window.location.href = "page2.html";
+});
+</script>
+
+</body>
+</html>
