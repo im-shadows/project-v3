@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CuxxyzHost</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:#05070f;
+  color:#eaffff;
+  font-family:'Oxanium',sans-serif;
+  height:100vh;
+  overflow:hidden;
+}
+
+.header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:18px 30px;
+  background:url('https://files.catbox.moe/5rfmqc.jpg') center/cover;
+  border-bottom:1px solid rgba(100,220,255,.3);
+}
+
+.left{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.logo{
+  width:54px;
+  height:54px;
+  border-radius:50%;
+  object-fit:cover;
+  box-shadow:0 0 30px rgba(100,220,255,.9);
+}
+
+.title{
+  font-size:28px;
+  letter-spacing:4px;
+  color:#64dcff;
+  text-shadow:
+    0 2px 0 #012,
+    0 10px 30px rgba(0,0,0,.9),
+    0 0 50px rgba(100,220,255,1);
+  animation:float 4s ease-in-out infinite;
+}
+@keyframes float{
+  50%{transform:translateY(-6px)}
+}
+
+/* MUSIC BUTTON */
+.music{
+  position:fixed;
+  bottom:24px;
+  right:24px;
+  width:56px;
+  height:56px;
+  border-radius:50%;
+  border:1px solid #64dcff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  box-shadow:0 0 30px rgba(100,220,255,.8);
+}
+.music::before{
+  content:'♫';
+  font-size:24px;
+  color:#64dcff;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="left">
+    <img src="https://files.catbox.moe/3ntvth.jpg" class="logo">
+    <div class="title">CUXXYZHOST</div>
+  </div>
+</div>
+
+<audio id="music" src="musik.mp3" loop></audio>
+
+<div class="music" onclick="toggleMusic()"></div>
+
+<script>
+const audio = document.getElementById('music');
+
+/* AUTOPLAY AMAN (DARI KLIK NEXT) */
+audio.play().catch(()=>{});
+
+let playing = true;
+function toggleMusic(){
+  playing = !playing;
+  playing ? audio.play() : audio.pause();
+}
+</script>
+
+</body>
+</html>
